@@ -27,12 +27,12 @@ void insertionSort (
 	std::vector <ItemType>& items
 )
 {
-	unsigned int amountOfItems = items.size ();
+	unsigned int nItems = items.size ();
 	for (
-		unsigned int amountOfSortedItems = 1;
-		amountOfSortedItems < amountOfItems;
-		amountOfSortedItems++
+		unsigned int nSortedItems = 1;
+		nSortedItems < nItems;
+		nSortedItems++
 	)
-		insertItem (items, amountOfSortedItems, 0);
+		insertItem (items, nSortedItems, 0);
 }
 #endif

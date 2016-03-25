@@ -21,14 +21,14 @@ void bubbleSort (
 	std::vector <ItemType>& items
 )
 {
-	unsigned int amountOfItems = items.size ();
-	unsigned int indexOfLastItemToCheck = amountOfItems == 0 ? 0 : amountOfItems - 1;
+	unsigned int nItems = items.size ();
+	unsigned int indexOfLastItemToCheck = nItems == 0 ? 0 : nItems - 1;
 	for (
-		unsigned int indexOfCurrentItem = 0;
-		indexOfCurrentItem < indexOfLastItemToCheck;
-		indexOfCurrentItem++
+		unsigned int nSortedItems = 0;
+		nSortedItems < indexOfLastItemToCheck;
+		nSortedItems++
 	) {
-		bubbleUp (items, indexOfLastItemToCheck, indexOfCurrentItem);
+		bubbleUp (items, indexOfLastItemToCheck, nSortedItems);
 	}
 }
 #endif

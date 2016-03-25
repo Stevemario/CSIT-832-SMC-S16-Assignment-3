@@ -29,8 +29,8 @@ void selectionSort (
 	std::vector <ItemType>& items
 )
 {
-	unsigned int amountOfItems = items.size ();
-	unsigned int indexOfLastItemToCheck = amountOfItems == 0 ? 0 : amountOfItems - 1;
+	unsigned int nItems = items.size ();
+	unsigned int indexOfLastItemToCheck = nItems == 0 ? 0 : nItems - 1;
 	unsigned int indexOfSmallestItemLeft;
 	for (
 		unsigned int indexOfCurrentItem = 0;
