@@ -4,7 +4,9 @@
 //Steve Mario Correa
 //Assignment 3
 //This software sorts LAVC courses by section number.
-#include "sorting functions.cpp"
+#include "selection sort.hpp"
+#include "bubble sort.hpp"
+#include "insertion sort.hpp"
 #include "csit_class.h"
 #include <fstream>
 #include <vector>
@@ -126,6 +128,16 @@ void sort (const sort_methods& sortMethodChoice, std::vector <csit_class>& CSITC
 		case sort_methods::Selection:
 		{
 			mySortingFunction = selectionSort;
+			break;
+		}
+		case sort_methods::Bubble:
+		{
+			mySortingFunction = bubbleSort;
+			break;
+		}
+		case sort_methods::Insertion:
+		{
+			mySortingFunction = insertionSort;
 			break;
 		}
 		default:
