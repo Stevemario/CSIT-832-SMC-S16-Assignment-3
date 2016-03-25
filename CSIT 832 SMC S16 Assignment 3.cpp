@@ -4,6 +4,7 @@
 //Steve Mario Correa
 //Assignment 3
 //This software sorts LAVC courses by section number.
+#include "sorting functions.cpp"
 #include "csit_class.h"
 #include <fstream>
 #include <vector>
@@ -122,6 +123,11 @@ void sort (const sort_methods& sortMethodChoice, std::vector <csit_class>& CSITC
 	void (*mySortingFunction)(std::vector <csit_class>&);
 	bool mistakesWereMade = false;
 	switch (sortMethodChoice) {
+		case sort_methods::Selection:
+		{
+			mySortingFunction = selectionSort;
+			break;
+		}
 		default:
 		{
 			mistakesWereMade = true;
