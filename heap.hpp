@@ -2,48 +2,47 @@
 #define HEAP_HPP
 #include "swap.hpp"
 unsigned int nHeapParentsOf (
-	const unsigned int& nIndex
+	const unsigned int& index
 )
 {
-	int parents = 0;
-	int nFactor = 2;
-	while ((nIndex / (nFactor - 1)) > 0) {
-		parents++;
-		nFactor *= 2;
+	unsigned int nParents = 0;
+	unsigned int factor = 2;
+	while ((index / (factor - 1)) > 0) {
+		nParents++;
+		factor *= 2;
 	}
-	return parents;
+	return nParents;
 }
 template <class ItemType>
 void reheapDown (
 	std::vector <ItemType>& items,
-	const unsigned int& nIndexOfNodeToMove,
-	unsigned int nGenerations,
-	const unsigned int& nElements
+	const unsigned int& indexOfItemToMove,
+	unsigned int nGenerationsToChange,
+	const unsigned int& nItemsThatCanChange
 )
 //This function checks
 //if a node has lesser priority than a number of its children, and
 //if it does,
 //it swaps the node's place in the heap with its successor.
 {
-	unsigned int nIndexOfNodeChildLeft;
-	unsigned int nIndexOfNodeChildRight;
-	unsigned int nIndexOfNodeChildWithHigherPriority;
+	unsigned int indexOfLeftChild;
+	unsigned int indexOfRightChild;
+	unsigned int indexOfChildWithHigherPriority;
 
-	nIndexOfNodeChildLeft = 2 * nIndexOfNodeToMove + 1;
-	nIndexOfNodeChildRight = 2 * nIndexOfNodeToMove + 2;
+	indexOfLeftChild = 2 * indexOfItemToMove + 1;
+	indexOfRightChild = 2 * indexOfItemToMove + 2;
 
-	if (nIndexOfNodeToMove >= 0 && nIndexOfNodeToMove < nElements  && nGenerations > 0) {
-	//if the node's index is positive, or zero, and
-	//   the node's index is an index for a placed node, and
+	if (indexOfItemToMove < nItemsThatCanChange  && nGenerationsToChange > 0) {
+	//if the node's index is an index for a placed node, and
 	//   the number of generations to heap up is positive.
 
-		if (nIndexOfNodeChildLeft <= nElements - 1) {
+		if (indexOfLeftChild <= nItemsThatCanChange - 1) {
 		//if the left child is within the heap
 
-			if (nIndexOfNodeChildLeft == nElements - 1)
+			if (indexOfLeftChild == nItemsThatCanChange - 1)
 			//if the left child is the last element
 
-				nIndexOfNodeChildWithHigherPriority = nIndexOfNodeChildLeft;
+				indexOfChildWithHigherPriority = indexOfLeftChild;
 				//the right child is not within the heap, so
 				//the left child is the higher priority valid child
 
@@ -51,12 +50,12 @@ void reheapDown (
 			//if the left child is not the last element, meaning
 			//both left and right children could be promoted
 
-				if (items [nIndexOfNodeChildLeft] < items [nIndexOfNodeChildRight])
+				if (items [indexOfLeftChild] < items [indexOfRightChild])
 				//if the left child's priority
 				//is lesser than
 				//the right child's priority
 
-					nIndexOfNodeChildWithHigherPriority = nIndexOfNodeChildRight;
+					indexOfChildWithHigherPriority = indexOfRightChild;
 					//the right child is the higher priority child
 
 				else
@@ -64,7 +63,7 @@ void reheapDown (
 				//is not lesser than
 				//the right child's priority
 
-					nIndexOfNodeChildWithHigherPriority = nIndexOfNodeChildLeft;
+					indexOfChildWithHigherPriority = indexOfLeftChild;
 					//the left child is the higher priority child,
 					//in this case, due the job class member
 					//job will prevent equal priority.
@@ -72,22 +71,27 @@ void reheapDown (
 					//but not important, left child is chosen
 					//just because one has to be chosen.
 			}
-			if (items [nIndexOfNodeToMove] < items [nIndexOfNodeChildWithHigherPriority]) {
+			if (items [indexOfItemToMove] < items [indexOfChildWithHigherPriority]) {
 			//if the node's priority
 			//is lesser than
 			//the child's priority
 				
 				//the heap's rules are violated.
-				//To fix that we start by
+				//To fix that we
 
-				swap (items, nIndexOfNodeToMove, nIndexOfNodeChildWithHigherPriority);
-				//swapping the node with it's bigger child
+				swap (items, indexOfItemToMove, indexOfChildWithHigherPriority);
+				//swap the node with it's bigger child
 
-				nGenerations--;
+				nGenerationsToChange--;
 				//note that we've gone down a generation
 
-				reheapDown (items, nIndexOfNodeChildWithHigherPriority, nGenerations, nElements);
-				//and repeating until the requirements are met.
+				reheapDown (
+					items,
+					indexOfChildWithHigherPriority, //note that the item we want to move is at the index its child was at before
+					nGenerationsToChange,
+					nItemsThatCanChange
+				);
+				//and repeat until the requirements are met.
 			}
 		}
 	}
