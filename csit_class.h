@@ -10,5 +10,6 @@ class csit_class {
 	public: csit_class (const int&, const int&);
 	public: int courseNumber () const;
 	public: int sectionNumber () const;
+	public: bool operator< (const csit_class&) const;
 };
 #endif

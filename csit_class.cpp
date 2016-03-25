@@ -9,3 +9,6 @@ int csit_class::courseNumber () const {
 int csit_class::sectionNumber () const {
 	return m_sectionNumber;
 }
+bool csit_class::operator< (const csit_class& comparison) const {
+	return this->sectionNumber () < comparison.sectionNumber ();
+}
