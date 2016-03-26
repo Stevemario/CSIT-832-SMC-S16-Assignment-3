@@ -1,7 +1,6 @@
 #ifndef QUICK_SORT_HPP
 #define QUICK_SORT_HPP
 #include "swap.hpp"
-// Recursive quick sort algorithm
 template <class ItemType>
 void split (
 	std::vector <ItemType>& items,
