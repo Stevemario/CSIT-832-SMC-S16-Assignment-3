@@ -8,6 +8,7 @@
 #include "bubble sort.hpp"
 #include "insertion sort.hpp"
 #include "heap sort.hpp"
+#include "quick sort.hpp"
 #include "csit_class.h"
 #include <fstream>
 #include <vector>
@@ -144,6 +145,11 @@ void sort (const sort_methods& sortMethodChoice, std::vector <csit_class>& CSITC
 		case sort_methods::Heap:
 		{
 			mySortingFunction = heapSort;
+			break;
+		}
+		case sort_methods::Quick:
+		{
+			mySortingFunction = quickSort;
 			break;
 		}
 		default:
