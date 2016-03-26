@@ -9,6 +9,7 @@
 #include "insertion sort.hpp"
 #include "heap sort.hpp"
 #include "quick sort.hpp"
+#include "merge sort.hpp"
 #include "csit_class.h"
 #include <fstream>
 #include <vector>
@@ -150,6 +151,11 @@ void sort (const sort_methods& sortMethodChoice, std::vector <csit_class>& CSITC
 		case sort_methods::Quick:
 		{
 			mySortingFunction = quickSort;
+			break;
+		}
+		case sort_methods::Merge:
+		{
+			mySortingFunction = mergeSort;
 			break;
 		}
 		default:
