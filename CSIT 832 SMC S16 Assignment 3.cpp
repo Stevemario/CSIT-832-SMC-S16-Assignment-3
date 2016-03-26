@@ -7,7 +7,7 @@
 #include "selection sort.hpp"
 #include "bubble sort.hpp"
 #include "insertion sort.hpp"
-#include "heap.hpp"
+#include "heap sort.hpp"
 #include "csit_class.h"
 #include <fstream>
 #include <vector>

@@ -1,5 +1,5 @@
-#ifndef HEAP_HPP
-#define HEAP_HPP
+#ifndef HEAP_SORT_HPP
+#define HEAP_SORT_HPP
 #include "swap.hpp"
 unsigned int nHeapParentsOf (
 	const unsigned int& index
